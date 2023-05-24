@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import { useFonts } from 'expo-font';
+
+import { RegistrationScreen} from './components/Screens/RegistrationScreen/RegistrationScreen'
+import { LoginScreen } from './components/Screens/LoginScreen/LoginScreen';
 
 export default function App() {
+
+  const [fontsLoaded] = useFonts({
+    'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+  });
+  
+  if (!fontsLoaded) {
+    return null;
+  }
+  const AuthStack = createStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <NavigationContainer>
+        <AuthStack.Navigator initialRouteName="Registration">
+          <AuthStack.Screen options={{ headerShown: false }} name="Registration" component={RegistrationScreen} />
+          <AuthStack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
+        </AuthStack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
