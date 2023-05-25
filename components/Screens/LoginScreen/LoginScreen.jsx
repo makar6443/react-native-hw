@@ -11,6 +11,7 @@ import {
 	View,
 } from "react-native";
 
+import { Background } from '../../Background/Background';
 import { useState } from "react";
 
 const initialState = {
@@ -30,9 +31,12 @@ export const LoginScreen = ({ navigation }) => {
   const keyboardHidden = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    console.log(state);
-    setState(initialState)
   };
+
+  const submitForm = () => {
+    setState(initialState)
+    console.log(state)
+  }
 
   const togglePasswordVisibility = () => {
 		setShowPassword(!showPassword);
@@ -41,10 +45,7 @@ export const LoginScreen = ({ navigation }) => {
   return (
 		<TouchableWithoutFeedback onPress={keyboardHidden}>   
 			<View style={styles.container}>
-				<ImageBackground
-					style={styles.image}
-          source={require("../../../assets/images/bg-photo.jpg")}
-        > 
+				<Background> 
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
@@ -88,7 +89,7 @@ export const LoginScreen = ({ navigation }) => {
                   </TouchableOpacity>
                 </View>       
               </View>
-              <TouchableOpacity style={styles.btn} title={"Login"} onPress={keyboardHidden}>
+              <TouchableOpacity style={styles.btn} title={"Login"} onPress={submitForm}>
                 <Text style={{ color: '#fff' }} >
                   Увійти
                 </Text>
@@ -100,7 +101,7 @@ export const LoginScreen = ({ navigation }) => {
               </Text>
             </View>
           </KeyboardAvoidingView>
-        </ImageBackground> 
+        </Background> 
 			</View>
     </TouchableWithoutFeedback>         
   )

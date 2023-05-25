@@ -12,7 +12,8 @@ import {
 } from "react-native";
 import { useState } from "react";
 
-import { Avatar } from '../../Avatar';
+import { Background } from '../../Background/Background';
+import { Avatar } from '../../Avatar/Avatar';
 
 const initialState = {
   name: "",
@@ -32,9 +33,12 @@ export const RegistrationScreen = ({ navigation }) =>{
   const keyboardHidden = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    console.log(state);
-    setState(initialState);
   };
+
+  const submitForm = () => {
+    setState(initialState)
+    console.log(state)
+  }
   
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -43,10 +47,7 @@ export const RegistrationScreen = ({ navigation }) =>{
   return (
     <TouchableWithoutFeedback onPress={keyboardHidden}>  
       <View style={styles.container}>
-        <ImageBackground
-          style={styles.image}
-          source={require("../../../assets/images/bg-photo.jpg")}
-        >			
+        <Background>			
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
@@ -106,7 +107,7 @@ export const RegistrationScreen = ({ navigation }) =>{
                   </TouchableOpacity>
                 </View>
               </View>
-              <TouchableOpacity style={styles.btn} title={"Sign in"} onPress={keyboardHidden}>
+              <TouchableOpacity style={styles.btn} title={"Sign in"} onPress={submitForm}>
                 <Text style={{ color: '#fff' }} >
                   Зареєструватися
                 </Text>
@@ -118,7 +119,7 @@ export const RegistrationScreen = ({ navigation }) =>{
               </Text>
             </View>
           </KeyboardAvoidingView>
-        </ImageBackground> 
+        </Background> 
       </View>
     </TouchableWithoutFeedback>         
   )

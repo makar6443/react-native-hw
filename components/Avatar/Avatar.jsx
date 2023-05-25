@@ -6,17 +6,17 @@ import {
   View
 } from "react-native";
 
-import { uploadIcon } from "../assets/icons/icons/";
+import { uploadIcon } from "../../assets/icons/icons";
 
 export const Avatar = () => {
   return (
     <View style={styles.avatarThumb}>
       <Image
-        // source={require("../assets/images/user.jpg")}
+        // source={require("../../assets/images/user.jpg")}
         style={styles.userAvatar}
       ></Image>
       <TouchableOpacity>
-        <View style={styles.userAvatarButton}>
+        <View style={styles.userAvatarBtn}>
           <SvgXml
             xml={uploadIcon}
             width={25}
@@ -36,20 +36,20 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     width: 120,
     height: 120,
-    backgroundColor: "#F6F6F6",
     borderRadius: 16,
-    zIndex: 40,
+    backgroundColor: "#F6F6F6",
+    zIndex: 30,
   },
   userAvatar: {
-    borderRadius: 16,
     width: 120,
     height: 120,
+    borderRadius: 16,
   },
-  userAvatarButton: {
+  userAvatarBtn: {
     position: "absolute",
-    width: 25,
-    height: 25,
     top: -40,
     left: 107,
+    width: 25,
+    height: 25,
   },
 });
